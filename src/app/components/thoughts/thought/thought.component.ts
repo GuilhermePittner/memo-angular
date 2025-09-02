@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Thougth } from '../thought';
 
 @Component({
   selector: 'app-thought',
@@ -8,8 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ThoughtComponent implements OnInit {
 
   // decorator
-  @Input() test_data = {
-      id: '0',
+  @Input() test_data: Thougth = {
+      id: 0,
       content: "just a random test",
       author: 'test_u',
       model: 'modelo3'
