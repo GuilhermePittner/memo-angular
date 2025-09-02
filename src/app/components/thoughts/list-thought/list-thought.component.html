@@ -4,9 +4,15 @@
         <button routerLink="/createThought" class="botao">Add thought</button>
     </header>
 
-    <div class="mural">
+    <div class="mural" *ngIf="thoughts_list.length > 0, else noThoughts">
         <div *ngFor="let thought of thoughts_list">
-            <app-thought></app-thought>
+            <app-thought [test_data]="thought"></app-thought>
         </div>
     </div>
+
+    <ng-template #noThoughts>
+        <div class="ff-inter sem-pensamentos">
+            <p>No thoughts saved yet...</p>
+        </div>
+    </ng-template>
 </section>

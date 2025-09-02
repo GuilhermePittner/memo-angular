@@ -1,4 +1,4 @@
-<div class="pensamento {{ test_data.model }} ff-roboto-mono pensamento-p">
+<div class="pensamento {{ test_data.model }} ff-roboto-mono" [ngClass]="thoughtLength()">
     <img src="assets/imagens/{{ test_data.model }}.png" alt="model_color">
     <p class="conteudo">
         {{ test_data.content }}

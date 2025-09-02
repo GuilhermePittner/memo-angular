@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-thought',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThoughtComponent implements OnInit {
 
-  test_data = {
+  // decorator
+  @Input() test_data = {
       id: '0',
       content: "just a random test",
       author: 'test_u',
@@ -17,6 +18,13 @@ export class ThoughtComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  thoughtLength(): string {
+    if (this.test_data.content.length >= 256) {
+      return 'pensamento-g';
+    }
+    return 'pensamentop'
   }
 
 }
