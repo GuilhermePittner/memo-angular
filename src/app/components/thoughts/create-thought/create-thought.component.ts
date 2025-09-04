@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Thougth } from '../thought';
+import { ThoughtService } from '../thought.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-thought',
@@ -9,23 +11,25 @@ import { Thougth } from '../thought';
 export class CreateThoughtComponent implements OnInit {
 
   thoughts_example: Thougth = {
-    id: 0,
-    content: "Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo num tendi nada. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Cevadis im ampola pa arma uma pindureta. Paisis, filhis, espiritis santis.",
-    author: 'Mussum',
-    model: ''
+    id: 777,
+    content: '',
+    author: '',
+    model: 'modelo1'
   }
 
-  constructor() { }
+  constructor(private service: ThoughtService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   saveThought() {
-    alert('saved!');
+    this.service.create(this.thoughts_example).subscribe(() => {
+      this.router.navigate(['/listThought'])
+    });   
   }
 
   cancelPost() {
-    alert('aborting....');
+
   }
 
 }

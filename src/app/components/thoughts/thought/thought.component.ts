@@ -9,12 +9,16 @@ import { Thougth } from '../thought';
 export class ThoughtComponent implements OnInit {
 
   // decorator
+  @Input() test_data!: Thougth;
+  
+  /* 
   @Input() test_data: Thougth = {
-      id: 0,
-      content: "just a random test",
-      author: 'test_u',
-      model: 'modelo3'
+    id: 0,
+    content: "just a random test",
+    author: 'test_u',
+    model: 'modelo3'
   }
+  */
 
   constructor() { }
 
