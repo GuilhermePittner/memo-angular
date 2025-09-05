@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DeleteThoughtComponent implements OnInit {
 
   thought: Thougth = {
-    id: 4,
     "content": '',
     "author": '',
     "model": ''
@@ -29,7 +28,6 @@ export class DeleteThoughtComponent implements OnInit {
 
   deleteThought(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    alert('ID que será deletado: ' + id);
 
     this.service.deleteThought(id).subscribe({
       next: () => this.router.navigate(['/listThought']),

@@ -1,5 +1,5 @@
 export interface Thougth {
-    id: number
+    id?: number
     content: string
     author: string
     model: string

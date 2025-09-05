@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class CreateThoughtComponent implements OnInit {
 
   thoughts_example: Thougth = {
-    id: 777,
     content: '',
     author: '',
     model: 'modelo1'
@@ -23,9 +22,14 @@ export class CreateThoughtComponent implements OnInit {
   }
 
   saveThought() {
+    if (!this.thoughts_example.content.trim() || !this.thoughts_example.author.trim()) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     this.service.create(this.thoughts_example).subscribe(() => {
       this.router.navigate(['/listThought'])
-    });   
+    });
   }
 
   cancelPost() {
