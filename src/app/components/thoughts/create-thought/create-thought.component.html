@@ -3,17 +3,31 @@
         <h2> What is on your mind <br> right now? </h2>
     </header>
     <form [formGroup]="form">
+
         <label for="pensamento">Your thought...</label>
-        <input type="textarea" class="input" id="pensamento" formControlName="content" placeholder="Type here your ideas...">
+        <input type="textarea" class="input" id="pensamento" formControlName="content" placeholder="Type here your ideas..." autocomplete="off">
+        <div class="mensagem__erro" *ngIf="form.get('content')?.errors && form.get('content')?.touched">
+            Thought field cannot be blank!
+        </div>
+
         <label for="autoria">Who thought this / Where did you get this?</label>
-        <input type="text" class="input" id="autoria" formControlName="author" placeholder="Who thought this?">
+        <input type="text" class="input" id="autoria" formControlName="author" placeholder="Who thought this?" autocomplete="off">
+        <div class="mensagem__erro" *ngIf="form.get('author')?.errors?.['minlength'] && form.get('author')?.touched">
+            Author name too short!
+        </div>
+        <div class="mensagem__erro" *ngIf="form.get('author')?.errors?.['required'] && form.get('author')?.touched">
+            Author name cannot be blank!
+        </div>
+        <div class="mensagem__erro" *ngIf="form.get('author')?.value !== (form.get('author')?.value | lowercase) && form.get('author')?.touched">
+            Author name must be in lowercase! (Class Challenge folks!)
+        </div>
 
         <label for="modelo">Select the card template:</label>
         <div class="container-radio">
 
             <div class="radio-modelo">
                 <label for="modelo1">
-                    <input type="radio" id="modelo1" value="modelo1" formControlName="modelo">
+                    <input type="radio" id="modelo1" value="modelo1" formControlName="model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -22,14 +36,14 @@
                 Preview:
                 <div class="modelo modelo1 ff-roboto-mono">
                     <img src="../../../../assets/imagens/modelo1.png" alt="model1">
-                    <p class="conteudo">{{ form.get('content')?.value }} </p>
-                    <p class="autoria"> <b>{{ form.get('content')?.value }}</b> </p>
+                    <p class="conteudo">{{ form.get('content')?.value }}</p>
+                    <p class="autoria"> <b>{{ form.get('content')?.value }}</b></p>
                 </div>
             </div>
 
             <div class="radio-modelo">
                 <label for="modelo2">
-                    <input type="radio" id="modelo2" value="modelo2" formControlName="modelo">
+                    <input type="radio" id="modelo2" value="modelo2" formControlName="model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -45,7 +59,7 @@
 
             <div class="radio-modelo">
                 <label for="modelo3">
-                    <input type="radio" id="modelo3" value="modelo3" formControlName="modelo">
+                    <input type="radio" id="modelo3" value="modelo3" formControlName="model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -61,7 +75,7 @@
 
         </div>
         <div class="acoes">
-            <button (click)="saveThought()" class="botao">Save</button>
+            <button (click)="saveThought()" [disabled]="!form.valid" [ngClass]="activateBtn()">Save</button>
             <button (click)="cancelPost()" routerLink="/listThought" class="botao">Cancel</button>
         </div>
     </form>
