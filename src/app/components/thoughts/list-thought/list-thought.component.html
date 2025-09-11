@@ -10,6 +10,10 @@
         </div>
     </div>
 
+    <app-paginate-button [hasMoreThoughts]="hasMoreThoughts" (click)="loadMore()">
+
+    </app-paginate-button>
+
     <ng-template #noThoughts>
         <div class="ff-inter sem-pensamentos">
             <p>No thoughts saved yet...</p>

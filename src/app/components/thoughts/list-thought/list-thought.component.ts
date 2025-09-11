@@ -32,14 +32,26 @@ export class ListThoughtComponent implements OnInit {
     */
   ]
 
+  page: number = 1;
+  hasMoreThoughts: boolean = true;
+
   constructor(private service: ThoughtService) { }
 
   ngOnInit(): void {
-    // same as onLoad
+  this.service.getAll(this.page).subscribe((thoughts_list) => {
+    this.thoughts_list = thoughts_list;
+  });
+}
 
-    this.service.getAll().subscribe((thoughts_list) => {
-      this.thoughts_list = thoughts_list;
-    });
-  }
+loadMore() {
+  this.page++;
+  this.service.getAll(this.page).subscribe(thoughts_list => {
+    this.thoughts_list.push(...thoughts_list);
+
+    if (thoughts_list.length < 6) {
+      this.hasMoreThoughts = false;
+    }
+  });
+}
 
 }

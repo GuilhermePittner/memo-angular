@@ -12,6 +12,7 @@ import { ThoughtComponent } from './components/thoughts/thought/thought.componen
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteThoughtComponent } from './components/thoughts/delete-thought/delete-thought.component';
 import { EditThoughtComponent } from './components/thoughts/edit-thought/edit-thought.component';
+import { PaginateButtonComponent } from './components/thoughts/list-thought/paginate-button/paginate-button.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditThoughtComponent } from './components/thoughts/edit-thought/edit-th
     ListThoughtComponent,
     ThoughtComponent,
     DeleteThoughtComponent,
-    EditThoughtComponent
+    EditThoughtComponent,
+    PaginateButtonComponent
   ],
   imports: [
     BrowserModule,
